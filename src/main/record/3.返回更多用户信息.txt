@@ -1,0 +1,70 @@
+时间：2017.12.05*****注意所有后续修改请加注释,需要在代码里加注释*******************
+	一、获取用户信息详情DAO处理，SaaSUserDaoJdbc中增加方法，增加相应实体类UserDetail
+		//获取用户详情实体
+    	private static final String SQL_PT_USER_DETAIL = "SELECT * FROM PT_USER_DETAIL T WHERE T.ID= (SELECT P.ID FROM AUTHENTICATION P WHERE P.login_name=?)";  
+   
+		public UserDetail getUserDetailByUsername(String username) {
+			//SQL_PT_USER_DETAIL
+			 try{  
+	         	//用户认证表信息获取  
+	         if(1==this.jdbcTemplate.queryForObject(SQL_VERIFY_ACCOUNT, new Object[]{username}, Integer.class)){  
+	             
+				UserDetail userDetail =this.jdbcTemplate.queryForObject(SQL_PT_USER_DETAIL,  new Object[]{username},new BeanPropertyRowMapper(UserDetail.class));  
+	         	            	            	            	
+	             return userDetail;
+	         }
+	         return null;  
+	       
+	     }catch(EmptyResultDataAccessException e){ 
+	         return null;  
+	     } 
+		}
+	二、自定义的返回给客户端相关信息
+		1.新建自定义的返回给客户端相关信息类，UserStubPersonAttributeDao(代码自行阅读)
+			这里采用注解的方式注入bean
+	    2. 注释掉原有返回信息的配置：deployerConfigContext.xml
+		<!-- 注释掉默认的attributeRepository实现,采用自定义的UserStubPersonAttributeDao -->
+		<!-- <bean id="attributeRepository" class="org.jasig.services.persondir.support.NamedStubPersonAttributeDao"
+	          p:backingMap-ref="attrRepoBackingMap" />
+	    <util:map id="attrRepoBackingMap">
+	        <entry key="uid" value="uid" />
+	        <entry key="eduPersonAffiliation" value="eduPersonAffiliation" />
+	        <entry key="groupMembership" value="groupMembership" />
+	        <entry>
+	            <key><value>memberOf</value></key>
+	            <list>
+	                <value>faculty</value>
+	                <value>staff</value>
+	                <value>org</value>
+	            </list>
+	        </entry>
+	    </util:map> -->
+	三、返回额外用户信息，页面配置
+	        页面路径：/WEB-INF/view/jsp/protocol/2.0/casServiceValidationSuccess.jsp
+	    <%--新增部分如下：CASServer验证成功后,该页面负责生成与客户端交互的XML信息  
+		        默认的casServiceValidationSuccess.jsp中只包括用户名,并不提供其他的属性信息,因此需要对该页面进行扩展  
+         --%>  
+        <c:if test="${fn:length(assertion.chainedAuthentications[fn:length(assertion.chainedAuthentications)-1].principal.attributes) > 0}">  
+            <cas:attributes>  
+                <c:forEach var="attr" items="${assertion.chainedAuthentications[fn:length(assertion.chainedAuthentications)-1].principal.attributes}">  
+                    <cas:${fn:escapeXml(attr.key)}>${fn:escapeXml(attr.value)}</cas:${fn:escapeXml(attr.key)}>  
+                </c:forEach>  
+            </cas:attributes>  
+        </c:if> 
+          四、注意事项：客户端获取信息处理
+        AttributePrincipal principal = (AttributePrincipal)((HttpServletRequest)request).getUserPrincipal();   
+		String loginName = principal.getName();
+		Map<String, Object> maps=principal.getAttributes();
+		//此处是乱码需要转码处理，后期可设法使之转码成UTF-8，这里便不用这么处理了
+		URLDecoder.decode(maps.get("realname"), "UTF-8")
+       
+	   
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,33 @@
+.LoginBg { background:#064782;  }
+.loginLf { width:60%; margin:60px 0px; text-align:center; }
+.loginLf img { width:80%;  }
+
+.loginRt { width:30%; margin:60px 0px; padding-right:30px;  }
+.loginBox { background:#fff; border:1px solid #dadada;   }
+
+.LoginH3 { background:#efefef; color:#064782;  border-bottom:1px solid #d1d1d1; height:46px; line-height:46px; font-size:18px;  padding-left:13px;  }
+
+.LoginForm { padding:20px; }
+.LoginDiv {   padding:6px 0px; font-size:13px;   }
+
+.LoginDiv span.forgetPass { padding-left:20px;  }
+.LoginDiv span.forgetPass a { color:#064782; }
+.LoginDiv span.forgetPass a:hover { color:#ff7800; }
+
+.LoginDivMar { padding-left:69px; }
+
+.LoginDiv span.spanName { display:inline-block; float:left; width:50px; text-align:center; padding:6px 0px; background:#f5f5f5; border:1px solid #eee; border-bottom:none;  }
+.LoginDiv span.spanName img { width:22px; height:22px;}
+
+.LoginDiv span.Spanyzm {  margin-left:13px; display:inline-block; vert-align:middle;  }
+.LoginDiv span.Spanyzm img { display:inline-block;  height:36px; width:auto;  }
+
+.txt {  width:80%; display: inline-block; height:36px; line-height:36px;  border:1px solid #eee; border-left:none; padding-left:13px;  }
+
+.txt1 { border:1px solid #eee; width:39%; float:left;  }
+
+button.aBtn, a.aBtn { display:inline-block;  height:36px; line-height:36px; border-radius:3px; text-align:center; color:#fff; font-size:15px; font-weight:bold; border:none !important; box-shadow: none !important; }
+
+button.redBg { width:48%; background:#ff7800; }
+button.blankBg { width:48%; background:#5b5b5b; }
+a.GrayBg { display:block;  background:#efefef; border:1px solid #eee !important; color:#363636; }

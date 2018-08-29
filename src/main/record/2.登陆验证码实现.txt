@@ -1,0 +1,93 @@
+时间：2017.12.04*****注意所有后续修改请加注释,需要在代码里加注释*******************
+一、生成验证码(采用谷歌的验证码生成类)
+	1.引入jar包kaptcha-2.3.2.jar
+	2.配置web.xml
+		<!-- Kaptcha验证码 -->
+	    <servlet>  
+		    <servlet-name>Kaptcha</servlet-name>  
+		    <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>  
+		    <init-param>  
+		        <param-name>kaptcha.border</param-name>  
+		        <param-value>no</param-value>  
+		    </init-param>  
+		    <init-param>  
+		        <param-name>kaptcha.textproducer.char.space</param-name>  
+		        <param-value>5</param-value>  
+		    </init-param>  
+		    <init-param>  
+		        <param-name>kaptcha.textproducer.char.length</param-name>  
+		        <param-value>5</param-value>  
+		    </init-param>  
+		</servlet>  
+	  
+		<servlet-mapping>  
+		    <servlet-name>Kaptcha</servlet-name>  
+		    <url-pattern>/captcha.jpg</url-pattern>  
+		</servlet-mapping> 
+		<!-- Kaptcha验证码 end-->
+	3.登陆页面加入验证码输入框
+		<!-- 验证码 -->
+	     <section class="row ">  
+            <label for="authcode"><spring:message code="screen.welcome.label.authcode" /></label>  
+            <spring:message code="screen.welcome.label.authcode.accesskey" var="authcodeAccessKey" />  
+            <table>  
+                <tr>  
+                    <td>  
+                        <form:input cssClass="required" cssErrorClass="error" id="authcode" size="10" tabindex="2" path="authcode"  accesskey="${authcodeAccessKey}" htmlEscape="true" autocomplete="off" />  
+                    </td>  
+                    <td style="vertical-align: bottom;">  
+                        <img onclick="this.src='captcha.jpg?'+Math.random()" width="93" height="30" src="captcha.jpg">  
+                    </td>  
+                </tr>  
+            </table>  
+           </section>
+      4.messages_zh_CN.properties加信息配置
+      #####################
+	  screen.welcome.label.authcode=\u9A8C\u8BC1\u7801:
+	  screen.welcome.label.authcode.accesskey=a
+	  required.authcode=\u5FC5\u987B\u5F55\u5165\u9A8C\u8BC1\u7801\u3002
+	  ####################
+二、验证验证码
+   1.login-webflow.xml中配置：
+           注掉原有UsernamePasswordCredential，重写加入验证码字段;
+	   	<!-- <var name="credential" class="org.jasig.cas.authentication.UsernamePasswordCredential"/> -->
+	   	<var name="credential" class="com.cserver.sso.bean.UsernamePasswordCredentialWithAuthCode"/>
+	登陆表单加入验证码字段
+		<binder>
+            <binding property="username" required="true"/>
+            <binding property="password" required="true"/>
+			<!-- 前台添加表单添加验证码字段authcode --> 
+            <binding property="authcode" required="true"/>            
+        </binder>	
+    2.重写类为  com.cserver.sso.bean.UsernamePasswordCredentialWithAuthCode
+    	其中加入了验证码字段
+    3.验证验证码
+            在SaaSAuthenticationHandler获取验证码并，验证验证码
+      if(!validatorCode(transformedCredential)){
+            throw new FailedLoginException("验证码错误.");
+      }
+             验证方法如下：
+     private boolean validatorCode(UsernamePasswordCredential transformedCredential) {
+		UsernamePasswordCredentialWithAuthCode upc = (UsernamePasswordCredentialWithAuthCode) transformedCredential;        
+        String submitAuthcode = upc.getAuthcode();
+      
+        HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        String authcode = (String) session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+        session.removeAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+        if (StringUtils.isEmpty(submitAuthcode) || StringUtils.isEmpty(authcode)) {
+            System.out.println("验证码没填OR验证码未生成");          
+        }
+        if (submitAuthcode.equals(authcode)) {
+        	System.out.println("验证码正确");
+            return true;
+        }
+        return false;
+		}
+三、注意事项：
+       生成验证码的过程网上教程很多，没有本质却别，关键点在于如何去验证验证码。
+       网上的案例几乎如出一辙的去重写登陆流程，先验证验证码-->再跳转去验证用户密码。
+       然而重写的登陆流程过程，因为版本问题和我的水平问题各种报错，无能为力，不好在继续在这条路上继续纠缠下去。
+       我的思路是在验证用户密码的SaaSAuthenticationHandler类中获取用户输入和kaptcha生成的验证码，
+       并对其做比较，验证码的功能就OK了，没必要非得纠缠，实在耗不起。
+    

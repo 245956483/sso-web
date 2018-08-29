@@ -1,0 +1,41 @@
+﻿时间：2017.12.06*****注意所有后续修改请加注释,需要在代码里加注释*******************
+	添加中服工具包：com.cserver.saas.commons.util-1.0.0.jar
+	SaaSUserDaoJdbc增加相关DAO层方法
+	重写以下三个方法：
+	错误登陆处理方法：failureLogin(authentication)
+	锁定状态处理：validatorAuthentication(authentication)
+	登陆日志：loginSuccessLog(username)
+	
+	认证流程完成：
+	//1.UsernamePasswordCredential参数包含了前台页面输入的用户信息
+    String username = transformedCredential.getUsername().replaceAll(" ","");//需要剔除空格  
+    String password = transformedCredential.getPassword();
+     Authentication authentication=userDaoJdbc.getAuthentication(username);       
+    //2.验证码错误程序直接OVER
+    if(!validatorCode(transformedCredential)){
+        throw new FailedLoginException("验证码错误.");
+	}
+     //3.认证用户名和密码是否正确  
+    if(!userDaoJdbc.verifyAccount(username, password)){
+    	String code=this.failureLogin(authentication);
+    	throw new FailedLoginException("错误信息："+code);
+    }
+    //4.账户当前是否处于锁定状态
+    if(this.validatorAuthentication(authentication)!=null){         
+
+    	throw new FailedLoginException("账户已经被锁，30分钟后登陆");
+    }
+    //5.登陆成功添加登陆日志
+    this.loginSuccessLog(username);
+    
+    //6.返回登陆成功状态，CAS程序继续运行
+	return createHandlerResult(transformedCredential, this.principalFactory.createPrincipal(username), null);  	     
+   
+	
+	
+	
+	
+	
+	
+	
+	

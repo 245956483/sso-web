@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+*{ margin:0px; padding:0px;}
+html{ padding:0px; margin:0px; font-family:"Microsoft YaHei"; }
+body{ background:url(../images/admin_bg.png) repeat-x  top center;margin:0px; padding:0px; color:#242424; font-size:12px;}
+ul{ list-style:none; padding:0px; margin:0px;}
+a{ text-decoration:none;}
+#codes{ display: inline-block;
+        height: 34px;
+    	width: 98px;}
+img{ border:none;}
+.denglu{ width:1002px; margin:0px auto;}
+.dl_logo{ width:100%; margin-top:100px; float:left; margin-bottom:14px;}
+.l_left{ float:left; width:316px;}
+.l_right{ width:500px; float:right; padding-right:0px;}
+.d_name{ background:#fcfefe; font-size:14px;}
+.yhm{ background:url(../images/yhm_bg.png) no-repeat;  height:43px; line-height:43px; padding-left:35px;}
+.mima{ background:url(../images/mima_bg.png) no-repeat; height:43px; line-height:43px; padding-left:35px;}
+.dlfoot{ width:100%; line-height:40px; height:40px; float:left; text-align:center; font-size:14px; color:#959595; padding-top:30px;}
+.yhzc{ display:block; width:100%; float:left; padding-top:40px;}
+.zhuce1{width:1002px; margin:0px auto;}
+.yhzc span{ font-size:18px; color:#f30; padding-right:780px; }
+.yhzc a{ text-decoration:none; color:#3333CC; line-height:2em;}
+.tb{ border:1px solid #cccccc; background:#fafafa; padding:36px 30px;}
+.srk1{ background:#ecf6fb; border:solid #93afc6 1px; line-height:29px; height:29px; width:95px;}
+.dlfoot1{ width:100%; line-height:40px; height:15px; float:left; text-align:center; font-size:14px; color:#959595; padding-top:8px;}
+	

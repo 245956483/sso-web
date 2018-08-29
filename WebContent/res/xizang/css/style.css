@@ -1,0 +1,87 @@
+
+.base{border-bottom: 1px solid #BBD3EB;border-left: 1px solid #BBD3EB;}  
+.base td,.base th{border-top:1px solid #BBD3EB;border-right: 1px solid #BBD3EB;height: 26px;}
+.ft{font-size:12px;}
+.bgpager{ background-color:#E1E5E8}
+a:link{
+	color: #333333;
+	text-decoration: none;
+}
+a:visited{
+	line-height: 1.5;
+	font-weight: normal;
+	color: #333333;
+	text-decoration: none;
+}
+a:hover{
+	color: #144882;
+	text-decoration: underline;
+}
+#tb2 td{
+	width: 40px;
+}
+.STYLE1 {
+	font-size: 14px;
+	color: #000;
+}
+
+.STYLE1 a {
+	font-size: 12px;
+}
+body {
+	font-family: "ËÎÌו", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin: 0px;
+	padding: 0px;
+	color: #505050;
+	line-height: 100%;
+	background: url("../images/bg.jpg") repeat-x #8bceff;
+	text-align: center;
+}
+.STYLE1 {
+	font-size: 14px;
+	color: #000;
+}
+
+.STYLE1 a {
+	font-size: 12px;
+}
+ul,li,dl {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+div,form,img,p,span,ul,ol,li,dl,dt,dd,font,form,fieldset,blockquote,center,big,small,strong,blockquote,center,hr
+	{
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+select,input,img,select {
+	vertical-align: middle;
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+a {
+	color: #505050;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #f06B00;
+	text-decoration: underline;
+}
+.wrap{ width:765px; height:390px; background:url("../images/conbg.png") no-repeat; margin:0 auto; margin-top:8%;}
+.login_con{ padding-top:185px; margin-left:436px;}
+.login_btn{ width:75px; height:24px; line-height:24px; background:url("../images/btn3.gif") no-repeat; border:none; color:#fff;}
+.login_input{ width:150px; height:25px; line-height:25px; border:1px solid #d1ebf2;}
+.login_tr{ height:32px;}
+.login_foot{ width:765px; margin:8px auto 0px; line-height:21px; text-align:center; color:#fff;}

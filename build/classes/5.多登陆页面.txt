@@ -1,0 +1,15 @@
+时间：2017.12.14*****注意所有后续修改请加注释,需要在代码里加注释*******************
+原有实现方式解析：
+	1.创建类com.cserver.sso.util.ReadConfig和config.properties
+	
+	2.备份登陆和登出页面为casLoginViewbak.jsp、casLogoutViewbak.jsp
+	
+	3.在casLoginView.jsp登陆页面写JAVA代码，判断layout的值，并作相应转
+	
+	  跳转规则为layout=microbill，跳转地址为config.properties中配置的microbillUrl的值对应地址
+	  
+	4.在casLogoutView.jsp退出登录成功页面写JAVA代码，判断layout的值，并转跳到相应地址
+	
+	5原有的图片、css、js资源存放不规则：建议存放地址统一存放，***=layout
+	res/***/js;res/***/css;res/***/images下
+	

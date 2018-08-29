@@ -1,0 +1,76 @@
+时间：2018.1.3*****注意所有后续修改请加注释,需要在代码里加注释*******************
+1.Oauth集成
+   	1.1添加jar包：cas-server-support-oauth-core-4.2.6.jar、cas-server-support-oauth-4.2.7.jar
+	1.2web.xml增加配置   
+	   <servlet-mapping>
+		  <servlet-name>cas</servlet-name>
+		  <url-pattern>/oauth2.0/*</url-pattern>
+	   </servlet-mapping>
+	1.3在services文件夹下增加文件keyName-10000005.json,内容如下：
+		{"@class" : "org.jasig.cas.support.oauth.services.OAuthRegisteredService",
+		  "clientId": "key",                 
+		  "clientSecret": "secret",
+		  "bypassApprovalPrompt": false,
+		  "serviceId" : "https://sso.cserver.byy.com:8443/sso.web/oauthCserver",
+		  "name" : "keyName",
+		  "id" : 10000005}
+	 	说明：serviceId对应允许访问的回调地址
+	 1.4修改配置文件cas.properties
+	 	server.name=https://sso.cserver.byy.com:8443 	对应单点域名	 	
+		server.prefix=${server.name}/sso.web	对应访问单点地址		
+	 	使用说明：
+	   	方法1.输入	
+		http://localhost:8090/sso.web/oauth2.0/authorize?client_id=key&redirect_uri=
+		https://sso.cserver.byy.com:8443/sso.web/oauthCserver&response_type=code
+		返回：
+		https://sso.cserver.byy.com:8443/sso.web/oauthCserver?code=ST-1-5FgQbwy4nFrbM4UiZQcl-sso.web
+		方法2.输入
+		http://localhost:8090/sso.web/oauth2.0/accessToken?client_id=key&client_secret=secret&
+		grant_type=authorization_code&redirect_uri=https://sso.cserver.byy.com:8443/sso.web/oauthCserver&code=ST-1-5FgQbwy4nFrbM4UiZQcl-sso.web
+		返回：
+		access_token=TGT-1-sBeBGnEnBRhAVzsPbKsdM25EaV3brEd1JZH1S9ek1VHEYqH4B7-sso.web&expires=7057
+		方法3.输入
+		http://localhost:8090/sso.web/oauth2.0/profile?access_token=
+		TGT-1-sBeBGnEnBRhAVzsPbKsdM25EaV3brEd1JZH1S9ek1VHEYqH4B7-sso.web  
+		返回：{"id":"yxcheche@126.com","attributes":[]}
+2.接口实现，方便用户使用和我们管理
+		2.1添加两个类
+			LoginCserverController.java：实现方法1
+			OauthCserverController.java：实现方法2、3
+		2.2修改配置config.properties
+			#OauthCserverController中会调用这个地址,对应访问单点地址
+			sso.name=https://sso.cserver.byy.com:8443/sso.web
+		2.3cas-servlet.xml添加配置
+			<!-- 新添加的用于校验验证码的Action -->  
+		 	<bean id="handlerMappingB" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+				<property name="mappings">
+					<props>
+						<prop key="/loginCserver">loginCserverController</prop>
+						<prop key="/oauthCserver">oauthCserverController</prop>					
+					</props>
+				</property>		
+			</bean>
+			<bean id="loginCserverController" class="com.cserver.sso.controller.LoginCserverController">		
+		     	<property name="userDaoJdbc" ref="saaSUserDaoJdbc"/> 
+			</bean>
+		     <bean id="oauthCserverController" class="com.cserver.sso.controller.OauthCserverController">
+		     	<property name="userDaoJdbc" ref="saaSUserDaoJdbc"/> 
+			</bean>
+		2.4web.xml中加配置
+			 <servlet-mapping>
+				  <servlet-name>cas</servlet-name>
+				  <url-pattern>/loginCserver</url-pattern>
+			  </servlet-mapping>
+			  <servlet-mapping>
+				  <servlet-name>cas</servlet-name>
+				  <url-pattern>/oauthCserver</url-pattern>
+			  </servlet-mapping>
+
+		
+	
+
+
+
+
+
+	

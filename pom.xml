@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0   
+http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>com.cserver.saas</artifactId>
+		<groupId>com.cserver</groupId>
+		<version>1.0.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cserver</groupId>
+	<artifactId>sso.web</artifactId>
+	<packaging>war</packaging>
+	<name>system-sso-web</name>
+	<version>1.0.0</version>
+	<url>http://cserver.com.cn</url>
+	<build>
+	    <finalName>sso.web</finalName>
+		<outputDirectory>target\classes</outputDirectory>
+		<testOutputDirectory>target\classes</testOutputDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+						<manifestFile>WebContent/META-INF/MANIFEST.MF</manifestFile>
+					</archive>
+					<webappDirectory>WebContent</webappDirectory>
+				</configuration>
+			</plugin>			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<forkMode>pertest</forkMode>
+					<argLine>-enableassertions</argLine>
+					<includes>
+						<include>**\*wwwTest.java</include>
+					</includes>
+
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.1</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.plexus</groupId>
+						<artifactId>plexus-compiler-javac</artifactId>
+						<version>2.2</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			
+			<plugin> 
+		    	<groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>  
+                <version>3.1</version>  
+                <configuration>  
+                   <source>1.7</source>  
+                   <target>1.7</target>  
+                   <encoding>UTF-8</encoding> 
+                   <compilerArguments>  
+                       <verbose />  
+                        <extdirs>WebContent\WEB-INF\lib;${project.artifactId}\WebContent\WEB-INF\lib</extdirs>  
+                   </compilerArguments>  
+                </configuration> 
+            </plugin>  
+		</plugins>
+		<extensions>
+		</extensions>
+	</build>
+</project>  

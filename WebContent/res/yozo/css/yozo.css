@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+body{ padding:0px; margin:0px;font-family:Microsoft YaHei; font-size:12px;}
+.box{ width:960px; margin:0px auto;}
+.top{ border-bottom: 6px solid #1688ce; padding-top:62px; padding-bottom:28px; float:left; width:100%;margin-bottom:120px;}
+.logo{ width:510px; float:left;}
+.email{font-size: 13px;float: right;text-align: right;padding-top: 5px;color: #666;}
+.main{ width:100%; }
+.left{ float:left; width:570px;}
+.right{ float:right; width:345px;padding:1px; height:315px; background:#cfcfcf;}
+.r1{background:#fff; padding:1px; height:313px;}
+.r2{background:#f6f6f6; padding:2px; height:309px;}
+.r3{ background:#fff; height:283px; padding-top:26px; padding-left:12px;}
+.zhuce a{text-decoration: underline; color:#1f4e8b;}
+.pt{ padding-bottom:16px;#padding-bottom:14px;}
+.pt1{padding-bottom:16px;#padding-bottom:0px}
+.srk{ background:#ecf6fb; border:solid #93afc6 1px; line-height:29px; height:29px; width:190px;}
+.srk1{ background:#ecf6fb; border:solid #93afc6 1px; line-height:29px; height:29px; width:95px;}
+.name{ line-height:31px; font-size:14px; text-align:left}
+.foot{ width:100%; float:left; text-align:center; padding-top:30px; border-top:1px solid #c0c1c1; margin-top:120px;}
+#codes{ display: inline-block;
+        height: 34px;
+    	width: 98px;}

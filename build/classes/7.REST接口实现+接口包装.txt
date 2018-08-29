@@ -1,0 +1,43 @@
+时间：2018.1.8*****注意所有后续修改请加注释,需要在代码里加注释*******************
+1.REST接口实现
+	引入两个JAR:cas-server-support-rest-4.2.7.jar
+			 cas-server-support-rest-services-4.2.7.jar
+	即可调用接口实现用户认证：
+	1.1获取TGT 
+	https://sso.cserver.byy.com:8443/sso.web/v2/tickets 
+	METHOD :POST
+	参数："username=yxcheche@126.com&password=888888&service=http://www.baidu.com" 
+
+	1.2获取ST
+	https://sso.cserver.byy.com:8443/sso.web/v2/tickets/TGT-4-Oyz5WdF5l76fJop0WnJSVAztPmZZXFdEIbF7OmIOrtKbcWHVS4-cas
+	METHOD :POST
+	参数："service=http://www.baidu.com"    
+
+	1.3获取用户信息
+	https://sso.cserver.byy.com:8443/sso.web/serviceValidate
+	METHOD :GET
+	参数："ticket=ST-5-PbmoVsCBYqdNhEZ0gKDK-cas&service=http://www.baidu.com"   
+2.接口包装
+		2.1添加一个类
+			LoginSSOController.java：实现方法1、2、3
+		2.3cas-servlet.xml添加配置
+			<!-- 新添加的用于校验验证码的Action -->  
+		 	<bean id="handlerMappingB" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+				<property name="mappings">
+					<props>
+						....
+						<prop key="/loginsso">loginSSOController</prop>						
+					</props>
+				</property>		
+			</bean>
+			<bean id="loginSSOController" class="com.cserver.sso.controller.LoginSSOController" >
+    			<property name="userDaoJdbc" ref="saaSUserDaoJdbc"/>
+    		</bean> 
+		2.4web.xml中加配置
+			 <!-- REST接口包装请求 -->
+		    <servlet-mapping>
+			  <servlet-name>cas</servlet-name>
+			  <url-pattern>/loginsso</url-pattern>
+		  	</servlet-mapping>
+		  	<!-- REST接口包装请求end -->
+   	

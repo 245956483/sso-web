@@ -1,0 +1,135 @@
+@charset "gb2312";
+
+/*CSS 默认值*/
+*html{background-image:url(about:blank);background-attachment:fixed;}
+html{}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{ font-style:normal;font-weight:normal;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight: bold; color:#000;}
+q:before,q:after{content:'';}
+abbr,acronym {border:0;font-variant:normal;}
+sup {vertical-align:text-top;}
+sub {vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+legend{color:#000;}
+
+table {font-size:inherit;font:100%;}
+pre,code,kbd,samp,tt{font-family:monospace;line-height:100%;}
+a, button { cursor:pointer}
+
+/**********defined************/
+body { font-size:14px; height:100%; color: #000000; background:#FFF; font-family:"Microsoft YaHei";}
+h1, h2, h3, h4, h5, h6, p { line-height:1.2em; font-size:100%}
+
+strong { font-weight:bold;}
+a { color: #333;text-decoration: none;}
+a:hover { text-decoration:none; color: #4D6EA4;}
+.cl:after{ content:".";display:block;height:0;clear:both;visibility:hidden;}
+.cl{ zoom:1;}
+.r { float:right}
+.l { float:left} 
+.w1002{ width:1002px; margin:0 auto;}
+.w389{ width:389px;}
+.w460{ width:460px;}
+.w455{ width:455px;}
+.w258{ width:258px;}
+.p10{ padding:10px;}
+.p20{ padding:20px;}
+.p23{ padding:0px 42px 0px 42px;}
+.pr22{ padding-right:22px;}
+.pr20{ padding-right:20px;}
+.pt20{ padding-top:20px;}
+.pt15{ padding-top:15px;}
+.pt10{ padding-top:10px;}
+.pt40{ padding-top:40px;}
+.pt8{ padding-top:8px;}
+
+/*********************首页开始 start*************************/
+/*header start*/
+.top{ background:#1c3f5f;}
+.title{ color:#FFFFFF; height:34px; text-align:left; font-size:12px; line-height:34px; width:1002px}
+.title a{ text-decoration:none; color:#FFFFFF; margin-right:6px;}
+.title span{ text-align:right; margin-left:140px;margin-left:193px;}
+.title span font{ color:#ea660e; font-size:18px;}
+.logo{ width:1002px; margin-top:13px; margin-bottom:13px;}
+span span{ margin-left:0px;}
+#codes{ display: inline-block;
+        height: 34px;
+    	width: 98px;}
+.main{ background:url(../images/bj.png) 0 bottom no-repeat;padding-top:35px;}
+.mainhr{ background:url(../images/bj2.png) 0 bottom no-repeat;padding-top:35px;}
+.username span,.code span{ font-size:14px;  text-indent:1em;border:1px solid #e8e8e8; border-radius:3px; display:block; color:#5e6d81;}
+.username span,.username span{ position:relative;width:279px;height:30px; line-height:30px;}
+.username span input{ float: right;position:relative;height:30px; line-height:30px;}
+.username b{font-weight:normal;height:30px; line-height:30px;width:65px; float:left; background:#ebebeb;}
+.code span input,.code span{height:25px; line-height:25px;float:left;}
+.code span{width:70px;}
+.code span input{width:65px;}
+.username span input,.code span input{border:0px; background:#fff; padding-left:5px;}
+.username span input{ width:208px;}
+.code b{ font-weight:normal; float:left; font-size:14px; height:30px;text-indent:1em; line-height:30px; text-indent:1emdisplay:block;color:#bdbdbf;}
+.code img{ height:25px; width:64px; overflow:hidden;}
+.valign a{height:14px; line-height:14px;color:#4d6ea4;font-size:12px; padding-left:30px;}
+.valign input{color:#666; width:14px; height:14px;font-size:12px; display:block; float:left; margin-top:1px;}
+.valign b{font-weight:normal;color:#5E6D81;padding:0 5px;width:14px; height:14px; font-size:12px;}
+.login{ background:#fff;}
+.login_h{height:340px; margin-right:70px;}
+.login_bg a{ width:90px; height:30px; line-height:30px; color:#fff; border-radius:3px; display:block; text-align:center;}
+.login_bg button{ width:90px; height:30px; line-height:30px; color:#fff; border-radius:3px; display:block; text-align:center;}
+.login_bg{ padding:16px 20px 11px 20px;}
+.login_bg .login01{ background:#69ba07; float:left;}
+.login_bg .login02{ background:#69ba07; float:right;}
+.zhuce{ }
+.zhuce a{display:block; height:36px;background:#dd7b26;border-radius:3px; line-height:36px; color:#fff; text-align:center; font-size:16px; font-weight:bold; }
+.zhuce span{ 0 0 no-repeat; height:15px; display:block;}
+.flash{ margin-left:150px;}
+
+
+
+
+/*foot start*/
+.foot{ width:100%; background:#fff;}
+.foot_list{ padding:30px 75px;;}
+.foot_list li{ float:left; position:relative; height:70px; width:262px; overflow:hidden;}
+.foot_list li span{ background:#82b5ec; height:70px; line-height:60px; display:block; text-align:center; width:70px; margin-right:3px; font-size:40px;font-family:"Microsoft YaHei"; font-weight:bold; color:#fff; border-radius:5px;}
+.foot_list li a{ position:absolute;top:0px; left:73px; background:#ebebeb; width:189px; display:block; font-size:20px; color:#666; height:70px; line-height:70px; text-indent:1em;border-radius:5px;}
+
+
+.logo {
+    margin-bottom: 13px;
+    margin-top: 13px;
+    width: 1002px;
+}
+
+
+.wrap {
+    clear: both;
+    margin: 0 auto;
+    padding: 0;
+    width: 1002px;
+}
+
+.logo1 {
+    clear: both;
+    height: 63px;
+    margin: 10px 0;
+    width: 1002px;
+}
+
+
+.logo_l {
+    float: left;
+    height: 63px;
+    width: 363px;
+}
+
+.logo_r {
+    float: right;
+    height: 63px;
+    width: 220px;
+}
+.phcolor{ color:#999;}
